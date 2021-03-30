@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left mt-2">
-            <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
+            <h2>DAFTAR BARANG TOKO LULUK MUFIDA</h2>
             </div>
             <div class="float-right my-2">
             <a class="btn btn-success" href="{{ route('barang.create') }}"> Input barang</a>
@@ -49,11 +49,13 @@
                     <a class="btn btn-primary" href="{{ route('barang.edit',['barang'=>$brg->id_barang]) }}">Edit</a>
                     @csrf 
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini? Jika iya klik oke')" 
+                    href="{{url('delete/'.$brg->id_barang)}}">Delete</button>
                     </form>
                     </td>
                 </tr>
             @endforeach
         </table>
+        
         {{ $barang->links() }}
 @endsection
