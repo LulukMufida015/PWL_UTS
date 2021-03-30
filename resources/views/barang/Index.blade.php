@@ -43,16 +43,33 @@
                     <td>{{ $brg->harga }}</td>
                     <td>{{ $brg->qty }}</td>
                     <td>
-                    <form action="{{ route('barang.destroy',['barang'=>$brg->id_barang]) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('barang.show',['barang'=>$brg->id_barang]) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('barang.edit',['barang'=>$brg->id_barang]) }}">Edit</a>
+                        <a class="btn btn-info" href="{{ route('barang.show',['barang'=>$brg->id_barang]) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ route('barang.edit',['barang'=>$brg->id_barang]) }}">Edit</a>
+                        <button type="button" data-toggle="modal" data-target="#delete{{$brg->id_barang}}" class="btn btn-danger">Delete</button>
+                    
+                </td>
+            </tr>
+            <div class="modal" id="delete{{$brg->id_barang}}" tabindex="-1">
+                <form action="{{ route('barang.destroy',['barang'=>$brg->id_barang]) }}" method="POST">
                     @csrf 
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini? Jika iya klik oke')" 
-                    href="{{url('delete/'.$brg->id_barang)}}">Delete</button>
-                    </form>
-                    </td>
-                </tr>
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Hapus Data Barang</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Apakah Anda yakin ingin menghapus barang tersebut?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                          <button type="submit" class="btn btn-primary">Iya</button>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+                  </div>
             @endforeach
         </table>
         
