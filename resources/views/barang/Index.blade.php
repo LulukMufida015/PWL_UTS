@@ -15,16 +15,15 @@
             <p>{{ $message }}</p>
         </div>
         @endif
-        {{-- <form method="post" action="{{url('cari')}}" id="myForm">
-            @csrf
+        <form method="get" action="{{route('barang.search')}}" id="myForm">
                 <div class="form-group">
-                <label for="Nim">Cari</label>
-                <input type="text"name="nim"class="form-control"id="Nim"aria-describedby="Nim"  placeholder="Cari bedasarkan nim">
+                <label for="keyword">Cari</label>
+                <input type="search"name="keyword"class="form-control"id="keyword"aria-describedby="keyword"  placeholder="Ketikkan yang dicari">
                 </div>
                 <button type="submit" class="btn btn-success mt-3">
             cari
             </button>
-        </form> --}}
+        </form>
         <table class="table table-bordered">
             <tr>
             <th>ID Barang</th>

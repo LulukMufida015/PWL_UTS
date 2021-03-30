@@ -90,7 +90,7 @@ class BarangController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'Kode_Barang' => 'required',
+            'Kode_Barang'  => 'required',
             'Nama_Barang' => 'required',
             'Kategori_Barang' => 'required',
             'Harga' => 'required',
@@ -116,4 +116,14 @@ class BarangController extends Controller
         return redirect()->route('barang.index')
         -> with('success', 'Barang Berhasil Dihapus');
     }
+    public function search(Request $request){
+        $keyword = $request->keyword;
+        $barang = Barang::where('Kode_Barang', 'like', '%' .$keyword. '%')
+        ->orWhere('Nama_Barang', 'like', '%' .$keyword. '%')
+        ->orWhere('Kategori_Barang', 'like', '%' .$keyword. '%')
+        ->paginate(5);
+        $barang->appends(['keyword' => $keyword]);
+        return view('barang.index', compact('barang'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }
+

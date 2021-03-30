@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('barang', BarangController::class);
+Route::get('barang/search/data', [BarangController::class, 'search'])->name('barang.search');
